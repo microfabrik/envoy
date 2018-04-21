@@ -1,4 +1,4 @@
-# Rate Service
+# Envoy
 
 ## Notes
 * add `rtDependencies` in your (micro)service `package.json` to capture the dependencies your service has on other services at runtime
