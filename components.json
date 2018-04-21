@@ -1,0 +1,13 @@
+{
+    "API": "api",
+    "CONNECTOR": "connector",
+    "CONTROLLER": "controller",
+    "HTTP": "http",
+    "MIDDLEWARE": "middleware",
+    "MODEL": "model",
+    "ROUTER": "router",
+    "UTIL": "util",
+    "VALIDATOR": "validator",
+    "SERVER": "server",
+    "TEST": "test"
+}

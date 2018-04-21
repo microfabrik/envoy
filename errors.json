@@ -1,0 +1,6 @@
+{
+	"NOT_IMPLEMENTED": {
+		"code": 900,
+		"message": "feature not implemented"
+	}
+}
