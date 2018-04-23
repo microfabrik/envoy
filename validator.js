@@ -2,6 +2,12 @@
 const Joi = require('joi');
 const log = require('./utils').logger;
 
+const registerServiceResponseSchema = Joi.object({
+    name: Joi.string().required(),
+    host: Joi.string().required(),
+    port: Joi.number().required()
+});
+
 let validate = {
     registerService: {
         requestModel: () => {
@@ -10,6 +16,9 @@ let validate = {
                 },
                 options: {
                     allowUnknown: true
+                },
+                payload: {
+                    name: Joi.string().required()
                 }
             }
         }
@@ -39,5 +48,10 @@ let validate = {
 }
 
 module.exports = {
-    validate: validate
+    validate: validate,
+    schemas: {
+        registerService: {
+            response: registerServiceResponseSchema
+        }
+    }
 }

@@ -2,49 +2,62 @@
 const alertApi = require('./api/alert');
 const serviceApi = require('./api/service');
 
-function getHealth (req, reply) {
-    return reply({
+function getHealth (req, h) {
+    return {
         uptime: process.uptime()
+    };
+}
+
+function registerService (req, h) {
+    return new Promise( (resolve, reject) => {
+        let requestModel = req.payload;
+        let responseModel = {};
+        serviceApi.registerService(requestModel)
+        .then( service => {
+            responseModel = service; // @todo map
+            return resolve(responseModel);
+        })
+        .catch( err => {
+            responseModel = {
+                error: err
+            };
+            return resolve(responseModel);
+        })
     });
 }
 
-function registerService (req, reply) {
-    let responseModel;
-    serviceApi.registerService()
-    .then( service => {
-        responseModel = service; // @todo map
-        return reply(responseModel);
-    })
-    .catch( err => {
-        responseModel = err; // @todo map
-        return reply(responseModel);
-    })
+function getService (req, h) {
+    return new Promise( (resolve, reject) => {
+        let responseModel;
+        serviceApi.getService()
+        .then( service => {
+            responseModel = service; // @todo map
+            return resolve(responseModel);
+        })
+        .catch( err => {
+            responseModel = {
+                error: err
+            };
+            return resolve(responseModel);
+        })
+    });
 }
 
-function getService (req, reply) {
-    let responseModel;
-    serviceApi.getService()
-    .then( service => {
-        responseModel = service; // @todo map
-        return reply(responseModel);
-    })
-    .catch( err => {
-        responseModel = err; // @todo map
-        return reply(responseModel);
-    })
-}
-
-function createAlert (req, reply) {
-    let responseModel;
-    alertApi.createAlert()
-    .then( alert => {
-        responseModel = alert; // @todo map
-        return reply(responseModel);
-    })
-    .catch( err => {
-        responseModel = err; // @todo map
-        return reply(responseModel);
-    })
+function createAlert (req, h) {
+    return new Promise( (resolve, reject) => {
+        let responseModel;
+        alertApi.createAlert()
+        .then( alert => {
+            responseModel = alert; // @todo map
+            return responseModel;
+        })
+        .catch( err => {
+            responseModel = {
+                error: err
+            };
+            return resolve(responseModel);
+        })
+    });
 }
 
 module.exports = {

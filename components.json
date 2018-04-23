@@ -1,13 +1,13 @@
 {
-    "API": "api",
-    "CONNECTOR": "connector",
-    "CONTROLLER": "controller",
-    "HTTP": "http",
-    "MIDDLEWARE": "middleware",
-    "MODEL": "model",
-    "ROUTER": "router",
-    "UTIL": "util",
-    "VALIDATOR": "validator",
-    "SERVER": "server",
-    "TEST": "test"
+    "API": "envoy:api",
+    "CONNECTOR": "envoy:connector",
+    "CONTROLLER": "envoy:controller",
+    "HTTP": "envoy:http",
+    "MIDDLEWARE": "envoy:middleware",
+    "MODEL": "envoy:model",
+    "ROUTER": "envoy:router",
+    "UTIL": "envoy:util",
+    "VALIDATOR": "envoy:validator",
+    "SERVER": "envoy:server",
+    "TEST": "envoy:test"
 }
