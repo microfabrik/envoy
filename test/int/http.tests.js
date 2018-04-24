@@ -5,12 +5,15 @@ const pkg = require('../../package.json');
 const log = require('../../utils').logger;
 const request = require('supertest');
 const should = require('chai').should();
+const testService = require('../fixtures/testService');
 
 let HOST = `http://${cfg.server.host}:${cfg.server.port}`;
 let TEST_SERVICE_NAME = 'test';
 
 before(function(done) {
-    done();
+    // start test service
+    testService.start(done);
+    // done();
 });
 
 describe(`envoy health check`, function() {
@@ -74,7 +77,23 @@ describe(`register a service`, function() {
         it.skip(`should fail`, done => {
         });
     })
-    it.skip(`should allow the swagger value to be an URL`, done => {
+    it.only(`should allow the swagger value to be an URL`, done => {
+            let query = '/services';
+            let payload = require('../payloads/registerServiceWithSwaggerUrl.json')
+            const url = `${HOST}${query}`;
+            log.debug(`POST ${url}`);
+            request(HOST)
+            .post(query)
+            .send(payload)
+            .expect(200)
+            .end((err, res)=> {
+                if(err) return done(err);
+                should.exist(res);
+                res.body.should.not.have.property('error');
+                res.body.should.have.property('host');
+                res.body.should.have.property('port');
+                return done();
+            });
     });
     it.skip(`should allow the swagger value to be a JSON object`, done => {
     });
@@ -122,5 +141,5 @@ describe(`register a status alert webhook`, function() {
 });
 
 after(function(done) {
-    done();
+    testService.stop(done);
 });

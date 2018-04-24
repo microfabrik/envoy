@@ -1,6 +1,6 @@
 {
   "name": "envoy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "envoy server",
   "scripts": {
     "dev": "DEBUG='envoy:*' nodemon index",
@@ -13,11 +13,14 @@
     "debug": "^3.1.0",
     "hapi": "^17.3.1",
     "joi": "^13.1.2",
+    "js-yaml": "^3.11.0",
     "request": "^2.85.0",
-    "supports-color": "^5.4.0"
+    "supports-color": "^5.4.0",
+    "underscore.string": "^3.3.4"
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "inert": "^5.1.0",
     "supertest": "^3.0.0"
   }
 }
